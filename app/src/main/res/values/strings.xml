@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RoomDatabateComKotlin</string>
+    <string name="cadastrar_usuario">CADASTRAR USUÁRIO</string>
 </resources>
