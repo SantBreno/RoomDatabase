@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@id/tvInfoTotalUsers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
@@ -20,10 +21,9 @@
         android:layout_margin="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/cadastrar_usuario"
+        android:text="@string/new_user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="375dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/tvInfoTotalUsers" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

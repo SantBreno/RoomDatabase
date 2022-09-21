@@ -1,8 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".NewUserActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/edFirstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/first_name"
+        tools:ignore="Autofill" />
+
+    <EditText
+        android:id="@+id/edLastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/last_name"
+        tools:ignore="Autofill" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        tools:ignore="HardcodedText" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

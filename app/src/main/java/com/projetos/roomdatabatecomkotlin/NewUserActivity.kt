@@ -2,9 +2,15 @@ package com.projetos.roomdatabatecomkotlin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.projetos.roomdatabatecomkotlin.database.AppDatabase
 import com.projetos.roomdatabatecomkotlin.database.daos.UserDao
+import com.projetos.roomdatabatecomkotlin.database.models.User
 import com.projetos.roomdatabatecomkotlin.databinding.ActivityNewUserBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class NewUserActivity : AppCompatActivity() {
 
@@ -20,6 +26,47 @@ class NewUserActivity : AppCompatActivity() {
         this.database = AppDatabase.getInstance(this)
 
         this.userDao = this.database.userDao()
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        this.binding.btnSave.setOnClickListener {
+
+            CoroutineScope(Dispatchers.IO).launch {
+
+                val result = saveUser(
+                    binding.edFirstName.text.toString(),
+                    binding.edLastName.text.toString()
+                )
+
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@NewUserActivity,
+                        if(result) "User saved!" else "Error trying to save user",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                    if(result)
+                        finish()
+
+                }
+
+            }
+
+        }
+    }
+
+    private suspend fun saveUser(firstName: String, lastName: String) : Boolean {
+        if(firstName.isBlank() || firstName.isEmpty())
+            return false
+
+        if(lastName.isBlank() || lastName.isEmpty())
+            return false
+
+        this.userDao.insert(User(firstName, lastName))
+
+        return true
     }
 
 }
